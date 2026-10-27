@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Sprout, CalendarDays, MapPin, Eye, ChevronRight, Thermometer } from "lucide-react";
+import { Sprout, CalendarDays, MapPin, Eye, ChevronRight, Thermometer, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -78,10 +78,15 @@ export function SeedCard({ entry, className }: SeedCardProps) {
             {entry.location}
           </span>
         )}
-        {entry.soilTemperatureC !== undefined && (
+        {entry.soilTemperatureC !== undefined ? (
           <span className="mt-0.5 flex items-center gap-1.5 truncate text-[11px] text-emerald-700">
             <Thermometer className="h-3 w-3 shrink-0" aria-hidden />
             Soil {entry.soilTemperatureC.toFixed(1)}°C
+          </span>
+        ) : (
+          <span className="mt-0.5 flex items-center gap-1.5 truncate text-[11px] text-zinc-400">
+            <AlertCircle className="h-3 w-3 shrink-0" aria-hidden />
+            No sensor
           </span>
         )}
       </span>
