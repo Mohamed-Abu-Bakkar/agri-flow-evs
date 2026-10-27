@@ -51,8 +51,21 @@ export const generate = action({
     cropType: v.string(),
     plantingDate: v.string(),
     location: v.optional(v.string()),
+    seedAgeDays: v.optional(v.number()),
+    soilTemperatureC: v.optional(v.number()),
+    soilMoisture: v.optional(v.number()),
+    weather: v.optional(v.string()),
   },
-  handler: async (_ctx, { soilType, cropType, plantingDate, location }) => {
+  handler: async (_ctx, {
+    soilType,
+    cropType,
+    plantingDate,
+    location,
+    seedAgeDays,
+    soilTemperatureC,
+    soilMoisture,
+    weather,
+  }) => {
     const apiKey = process.env.GROQ_API_KEY;
     if (!apiKey) {
       throw new Error("Missing GROQ_API_KEY");
@@ -61,12 +74,31 @@ export const generate = action({
     const locationLine = location
       ? `Location: ${location}`
       : "Location: not specified";
+    const ageLine =
+      typeof seedAgeDays === "number"
+        ? `Seed age: ${seedAgeDays} days since planting`
+        : "Seed age: not specified";
+    const tempLine =
+      typeof soilTemperatureC === "number"
+        ? `Soil temperature: ${soilTemperatureC.toFixed(1)}°C`
+        : "Soil temperature: not available";
+    const moistureLine =
+      typeof soilMoisture === "number"
+        ? `Soil moisture: ${soilMoisture.toFixed(0)}%`
+        : "Soil moisture: not available";
+    const weatherLine = weather
+      ? `Weather: ${weather}`
+      : "Weather: not available";
+
     const userPrompt = [
+      ageLine,
+      `Crop/seed: ${cropType}`,
       `Soil type: ${soilType}`,
-      `Crop type: ${cropType}`,
-      `Planting date: ${plantingDate}`,
+      tempLine,
+      moistureLine,
+      weatherLine,
       locationLine,
-      "Provide practical fertilizer timing, a weekly irrigation schedule, and a runoff risk note for this context.",
+      "Using all of the above (seed age, crop/seed variety, soil type, soil temperature, soil moisture, current weather, and location), provide practical fertilizer timing, a weekly irrigation schedule, and a runoff risk note for this context.",
     ].join("\n");
 
     const response = await fetch(GROQ_URL, {

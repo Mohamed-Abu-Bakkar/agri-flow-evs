@@ -14,6 +14,7 @@ import {
 } from "@/components/shared/RecommendationCard";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { getGroqRecommendation } from "@/lib/groq";
+import { useWeather } from "@/hooks/useWeather";
 import { useHaptic } from "@/hooks/useHaptic";
 import { useGeolocation } from "@/hooks/useGeolocation";
 
@@ -28,6 +29,7 @@ interface PlanArgs {
 function ScheduleContent() {
   const { impact } = useHaptic();
   const geo = useGeolocation();
+  const weather = useWeather();
   const searchParams = useSearchParams();
   const seedParam = searchParams.get("seed");
 
@@ -93,11 +95,26 @@ function ScheduleContent() {
     setLoading(true);
     setError(null);
     try {
+      const planting = new Date(args.plantingDate);
+      const seedAgeDays = Number.isNaN(planting.getTime())
+        ? undefined
+        : Math.max(0, Math.floor((Date.now() - planting.getTime()) / 86_400_000));
+
+      const latest = latestReading;
+      const weatherData = weather.weather;
+      const weatherLine = weatherData
+        ? `${weatherData.temperature.toFixed(0)}°C, ${Math.round(weatherData.humidity)}% humidity, ${weatherData.description}`
+        : undefined;
+
       const data = await getGroqRecommendation({
         soilType: args.soilType.trim(),
         cropType: args.cropType.trim(),
         plantingDate: args.plantingDate,
         location: args.location?.trim() || undefined,
+        seedAgeDays,
+        soilTemperatureC: latest?.soilTemperatureC,
+        soilMoisture: latest?.soilMoisture,
+        weather: weatherLine,
       });
       setRecommendation(data);
       setPlanTitle(args.seedLabel ?? null);

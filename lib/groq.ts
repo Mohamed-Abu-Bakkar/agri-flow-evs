@@ -9,6 +9,10 @@ export interface GroqRecommendationInput {
   cropType: string;
   plantingDate: string;
   location?: string;
+  seedAgeDays?: number;
+  soilTemperatureC?: number;
+  soilMoisture?: number;
+  weather?: string;
 }
 
 interface GroqMessage {
@@ -59,6 +63,10 @@ export async function getGroqRecommendation({
   cropType,
   plantingDate,
   location,
+  seedAgeDays,
+  soilTemperatureC,
+  soilMoisture,
+  weather,
 }: GroqRecommendationInput): Promise<Recommendation> {
   const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
   if (!apiKey) {
@@ -66,12 +74,29 @@ export async function getGroqRecommendation({
   }
 
   const locationLine = location ? `Location: ${location}` : "Location: not specified";
+  const ageLine =
+    typeof seedAgeDays === "number"
+      ? `Seed age: ${seedAgeDays} days since planting`
+      : "Seed age: not specified";
+  const tempLine =
+    typeof soilTemperatureC === "number"
+      ? `Soil temperature: ${soilTemperatureC.toFixed(1)}°C`
+      : "Soil temperature: not available";
+  const moistureLine =
+    typeof soilMoisture === "number"
+      ? `Soil moisture: ${soilMoisture.toFixed(0)}%`
+      : "Soil moisture: not available";
+  const weatherLine = weather ? `Weather: ${weather}` : "Weather: not available";
+
   const userPrompt = [
+    ageLine,
+    `Crop/seed: ${cropType}`,
     `Soil type: ${soilType}`,
-    `Crop type: ${cropType}`,
-    `Planting date: ${plantingDate}`,
+    tempLine,
+    moistureLine,
+    weatherLine,
     locationLine,
-    "Provide practical fertilizer timing, a weekly irrigation schedule, and a runoff risk note for this context.",
+    "Using all of the above (seed age, crop/seed variety, soil type, soil temperature, soil moisture, current weather, and location), provide practical fertilizer timing, a weekly irrigation schedule, and a runoff risk note for this context.",
   ].join("\n");
 
   const messages: GroqMessage[] = [
