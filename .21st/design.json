@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "project": {
+    "name": "agri-flow-evs",
+    "productType": null,
+    "stack": [
+      "nextjs",
+      "react"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "app/globals.css"
+    ],
+    "components": [
+      "components/ui"
+    ],
+    "assets": [],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "light-and-dark",
+    "colors": {
+      "--background": {
+        "value": "222.2 84% 4.9%",
+        "source": "app/globals.css"
+      },
+      "--foreground": {
+        "value": "210 40% 98%",
+        "source": "app/globals.css"
+      },
+      "--card-foreground": {
+        "value": "210 40% 98%",
+        "source": "app/globals.css"
+      },
+      "--primary": {
+        "value": "142.1 70.6% 45.3%",
+        "source": "app/globals.css"
+      },
+      "--primary-foreground": {
+        "value": "210 40% 98%",
+        "source": "app/globals.css"
+      },
+      "--secondary": {
+        "value": "217.2 32.6% 17.5%",
+        "source": "app/globals.css"
+      },
+      "--secondary-foreground": {
+        "value": "210 40% 98%",
+        "source": "app/globals.css"
+      },
+      "--muted": {
+        "value": "217.2 32.6% 17.5%",
+        "source": "app/globals.css"
+      },
+      "--muted-foreground": {
+        "value": "215 20.2% 65.1%",
+        "source": "app/globals.css"
+      },
+      "--accent": {
+        "value": "217.2 32.6% 17.5%",
+        "source": "app/globals.css"
+      },
+      "--accent-foreground": {
+        "value": "210 40% 98%",
+        "source": "app/globals.css"
+      },
+      "--destructive": {
+        "value": "0 62.8% 30.6%",
+        "source": "app/globals.css"
+      },
+      "--destructive-foreground": {
+        "value": "210 40% 98%",
+        "source": "app/globals.css"
+      },
+      "--border": {
+        "value": "217.2 32.6% 17.5%",
+        "source": "app/globals.css"
+      },
+      "--ring": {
+        "value": "142.1 70.6% 45.3%",
+        "source": "app/globals.css"
+      },
+      "--success-foreground": {
+        "value": "210 40% 98%",
+        "source": "app/globals.css"
+      },
+      "--warning-foreground": {
+        "value": "26 83% 14%",
+        "source": "app/globals.css"
+      }
+    },
+    "typography": {},
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {},
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [
+      "badge",
+      "button",
+      "input"
+    ],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [],
+    "avoid": []
+  },
+  "decisions": [
+    {
+      "name": "Runoff Guardian",
+      "description": "Risk-first mobile UI: emerald gradient PageHeader, runoff score card with elevated/low states, amber action checklist, WATCH/OK seed badges, windless zinc cards. Chosen from directions A (Field Console), B (Pastoral Calm), C (Runoff Guardian).",
+      "selectedAt": "2026-10-24T06:40:00.000Z",
+      "preview": "design/direction-c-risk-first.html"
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "components.installed",
+      "source": "components/ui"
+    },
+    {
+      "fact": "design.colorMode:light-and-dark",
+      "source": "app/globals.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "app/globals.css"
+    },
+    {
+      "fact": "project.stack:nextjs",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-10-24T06:20:35.301Z"
+}

@@ -1,0 +1,9 @@
+{
+  "appId": "com.agriflow.evs",
+  "appName": "AgriFlow",
+  "webDir": "out",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {}
+}

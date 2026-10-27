@@ -1,0 +1,40 @@
+{
+  "name": "agri-flow-evs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "mobile:add:android": "npx cap add android",
+    "mobile:add:ios": "npx cap add ios",
+    "mobile:sync": "npx cap sync",
+    "mobile:open:android": "npx cap open android",
+    "mobile:open:ios": "npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.2",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/geolocation": "^6.1.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "convex": "^1.12.0",
+    "lucide-react": "^0.400.0",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "tailwind-merge": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.0",
+    "autoprefixer": "^10.6.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "postcss": "^8.5.31",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.5.0"
+  }
+}
