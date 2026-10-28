@@ -100,7 +100,7 @@ void loop() {
 ```cpp
 const char* WIFI_SSID     = "YOUR_WIFI_SSID";
 const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
-const char* CONVEX_URL    = "https://aware-jaguar-705.convex.cloud/ingest";
+const char* CONVEX_URL    = "https://aware-jaguar-705.convex.site/ingest";
 const char* USER_ID       = "REPLACE_WITH_CONVEX_USER_ID";
 const char* SEED_ID       = "REPLACE_WITH_CONVEX_SEED_ID";
 ```

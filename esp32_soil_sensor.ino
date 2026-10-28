@@ -28,7 +28,7 @@ const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 // ---- Convex endpoint ----
 // Deployed Convex dev/prod deployment. The /ingest route is defined in
 // convex/http.ts and forwards to sensorReadings.ingestHttp.
-const char* CONVEX_URL = "https://aware-jaguar-705.convex.cloud/ingest";
+const char* CONVEX_URL = "https://aware-jaguar-705.convex.site/ingest";
 
 // ---- IDs ----
 // Replace these with the actual Convex document ids from your app.
